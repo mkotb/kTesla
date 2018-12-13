@@ -1,4 +1,4 @@
-package com.mkotb.tesla.model
+package com.mkotb.ktesla.model
 
 import com.google.gson.annotations.SerializedName
 

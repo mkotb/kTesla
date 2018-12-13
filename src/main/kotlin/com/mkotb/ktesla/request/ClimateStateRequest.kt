@@ -1,6 +1,6 @@
-package com.mkotb.tesla.request
+package com.mkotb.ktesla.request
 
-import com.mkotb.tesla.model.ClimateState
+import com.mkotb.ktesla.model.ClimateState
 import io.ktor.http.HttpMethod
 
 data class ClimateStateRequest (

@@ -1,4 +1,4 @@
-package com.mkotb.tesla.request
+package com.mkotb.ktesla.request
 
 import io.ktor.http.HttpMethod
 

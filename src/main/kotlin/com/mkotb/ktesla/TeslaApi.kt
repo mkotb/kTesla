@@ -1,18 +1,14 @@
-package com.mkotb.tesla
+package com.mkotb.ktesla
 
 import com.google.gson.FieldNamingPolicy
-import com.mkotb.tesla.request.*
+import com.mkotb.ktesla.request.*
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.features.json.GsonSerializer
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.request.forms.formData
-import io.ktor.client.request.forms.submitForm
 import io.ktor.client.request.forms.submitFormWithBinaryData
-import io.ktor.client.request.parameter
-import io.ktor.client.request.request
 import io.ktor.client.request.url
-import io.ktor.http.parametersOf
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

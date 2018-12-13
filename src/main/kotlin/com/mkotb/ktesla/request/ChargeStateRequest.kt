@@ -1,6 +1,6 @@
-package com.mkotb.tesla.request
+package com.mkotb.ktesla.request
 
-import com.mkotb.tesla.model.ChargeState
+import com.mkotb.ktesla.model.ChargeState
 import io.ktor.http.HttpMethod
 
 class ChargeStateRequest (
