@@ -74,8 +74,6 @@ data class ChargeState (
         // todo figure out what user charge enable request looks like
 )
 
-// todo make a serializer for this and find
-// all possible values
 enum class ChargePortState {
     ENGAGED,
     DISENGAGED

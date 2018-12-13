@@ -1,7 +1,10 @@
 package com.mkotb.ktesla
 
 import com.google.gson.FieldNamingPolicy
+import com.mkotb.ktesla.model.ChargePortState
+import com.mkotb.ktesla.model.ChargingState
 import com.mkotb.ktesla.request.*
+import com.mkotb.ktesla.util.LowercaseEnumAdapter
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.features.json.GsonSerializer
@@ -13,6 +16,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
+import kotlin.reflect.KClass
 
 class TeslaApi (var token: String) {
     companion object {
@@ -29,6 +33,13 @@ class TeslaApi (var token: String) {
             install(JsonFeature) {
                 serializer = GsonSerializer {
                     setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+
+                    fun <T : Enum<T>> registerEnumAdapter(clazz: KClass<T>) {
+                        registerTypeAdapter(clazz.java, LowercaseEnumAdapter(clazz))
+                    }
+
+                    registerEnumAdapter(ChargePortState::class)
+                    registerEnumAdapter(ChargingState::class)
                 }
             }
         }
