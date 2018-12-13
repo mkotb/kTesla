@@ -5,12 +5,12 @@ import com.google.gson.annotations.SerializedName
 data class ClimateState (
         val batteryHeater: Boolean,
         val batteryHeaterNoPower: Boolean,
-        // temperature setting for driver seat in celsius
+        // temperature setting for driver seat in configured temperature unit
         @SerializedName("driver_temp_setting")
         val driverTemperature: Double,
         // fan level
         val fanStatus: Int,
-        // the inside temperature in celsius
+        // the inside temperature in configured temperature unit
         @SerializedName("inside_temp")
         val insideTemperature: Double,
         @SerializedName("is_auto_conditioning_on")
@@ -24,9 +24,9 @@ data class ClimateState (
         val rearDefrosterEnabled: Boolean,
         @SerializedName("left_temp_direction")
         val leftTemperatureDirection: Int,
-        // the max temperature the car can provide (celsius)
+        // the max temperature the car can provide in configured temperature unit
         val maxAvailableTemperature: Double,
-        // the min temperature the car can provide (celsius)
+        // the min temperature the car can provide in configured temperature unit
         val minAvailableTemperature: Double,
         // the outside temperature
         val outsideTemperature: Double,
