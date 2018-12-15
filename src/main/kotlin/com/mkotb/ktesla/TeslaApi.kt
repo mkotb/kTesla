@@ -10,6 +10,7 @@ import io.ktor.client.features.json.GsonSerializer
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.request.forms.formData
 import io.ktor.client.request.forms.submitFormWithBinaryData
+import io.ktor.client.request.header
 import io.ktor.client.request.url
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -84,11 +85,6 @@ class TeslaApi (var token: String) {
             // create mutable map of parameters
             val parameters = HashMap<String, Any?>(request.generateParameters())
 
-            // add api token if applicable
-            if (request.authenticated && api != null) {
-                parameters["Authorization"] = "Bearer: ${api.token}"
-            }
-
             // transform into a form
             val form = formData {
                 parameters.forEach { k, v ->
@@ -102,6 +98,11 @@ class TeslaApi (var token: String) {
                 // set HTTP Method and URL
                 method = request.method
                 url("$baseUrl/${request.endpoint}")
+
+                // add api token if applicable
+                if (request.authenticated && api != null) {
+                    header("Authorization", "Bearer: ${api.token}")
+                }
             }
         }
 

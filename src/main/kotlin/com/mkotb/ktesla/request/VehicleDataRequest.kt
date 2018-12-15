@@ -1,15 +1,15 @@
 package com.mkotb.ktesla.request
 
-import com.mkotb.ktesla.model.VehicleState
+import com.mkotb.ktesla.model.VehicleData
 import io.ktor.http.HttpMethod
 
-data class VehicleStateRequest (
-        val vehicleId: Int
-) : TeslaRequest<VehicleStateResponse>() {
+class VehicleDataRequest (
+        vehicleId: Int
+) : TeslaRequest<VehicleDataResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/data_request/vehicle_state"
     override val method = HttpMethod.Get
 }
 
-class VehicleStateResponse (
-        val response: VehicleState
+class VehicleDataResponse (
+        val response: VehicleData
 ) : TeslaResponse()
