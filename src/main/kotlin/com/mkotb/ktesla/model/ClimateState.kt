@@ -5,12 +5,22 @@ import com.google.gson.annotations.SerializedName
 data class ClimateState (
         val batteryHeater: Boolean,
         val batteryHeaterNoPower: Boolean,
-        // temperature setting for driver seat in configured temperature unit
+        /**
+         * Temperature setting for driver seat in configured temperature unit
+         *
+         * @see GuiSettings.temperatureUnit
+         */
         @SerializedName("driver_temp_setting")
         val driverTemperature: Double,
-        // fan level
+        /**
+         * Fan level
+         */
         val fanStatus: Int,
-        // the inside temperature in configured temperature unit
+        /**
+         * The temperature inside of the car in configured temperature unit
+         *
+         * @see GuiSettings.temperatureUnit
+         */
         @SerializedName("inside_temp")
         val insideTemperature: Double,
         @SerializedName("is_auto_conditioning_on")
@@ -24,11 +34,23 @@ data class ClimateState (
         val rearDefrosterEnabled: Boolean,
         @SerializedName("left_temp_direction")
         val leftTemperatureDirection: Int,
-        // the max temperature the car can provide in configured temperature unit
+        /**
+         * The max temperature the car can provide in configured temperature unit
+         *
+         * @see GuiSettings.temperatureUnit
+         */
         val maxAvailableTemperature: Double,
-        // the min temperature the car can provide in configured temperature unit
+        /**
+         * The min temperature the car can provide in configured temperature unit
+         *
+         * @see GuiSettings.temperatureUnit
+         */
         val minAvailableTemperature: Double,
-        // the outside temperature
+        /**
+         * The temperature outside the car in the configured temperature unit
+         *
+         * @see GuiSettings.temperatureUnit
+         */
         val outsideTemperature: Double,
         @SerializedName("passenger_temp_setting")
         val passengerTemperatureSetting: Double,
@@ -44,7 +66,9 @@ data class ClimateState (
         val seatHeaterLeftTemperature: Double,
         @SerializedName("seat_heater_rear_right_back")
         val seatHeaterRightTemperature: Double,
-        // whether the side mirror heaters are on
+        /**
+         * Whether the side mirror heaters are on
+         */
         @SerializedName("side_mirror_heaters")
         val sideMirrorHeater: Boolean,
         @SerializedName("smart_preconditioning")

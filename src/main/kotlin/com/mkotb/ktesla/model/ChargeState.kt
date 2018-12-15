@@ -5,56 +5,94 @@ import com.google.gson.annotations.SerializedName
 data class ChargeState (
         @SerializedName("battery_heater_on")
         val batteryHeaterStatus: Boolean,
-        // battery level percentage 0-100
+        /**
+         * Battery level percentage 0-100
+         */
         val batteryLevel: Int,
-        // battery range in the configured distance unit
+        /**
+         * Battery range in the configured distance unit
+         * @see GuiSettings.distanceUnit
+         */
         val batteryRange: Double,
-        // in amps
+        /**
+         * Charge current request in amps
+         */
         val chargeCurrentRequest: Int,
-        // in amps
+        /**
+         * Charge current request max in amps
+         */
         val chargeCurrentRequestMax: Int,
-        // KwH of how much energy has been added since plugged in
+        /**
+         * KwH of how much energy has been added since plugged in
+         */
         val chargeEnergyAdded: Double,
         val chargeLimitSoc: Int,
         val chargeLimitSocMax: Int,
         val chargeLimitSocMin: Int,
         val chargeLimitSocStd: Int,
-        // charge miles added since the last charging session
+        /**
+         * Charge miles added since last charging session
+         */
         val chargeMilesAddedIdeal: Double,
         val chargeMilesAddedRated: Double,
         @SerializedName("charge_port_door_open")
         val isChargePortOpen: Boolean,
         @SerializedName("charge_port_latch")
         val chargePortState: ChargePortState,
-        // charge rate in KW
+        /**
+         * charge rate in the configured charge unit
+         *
+         * @see GuiSettings.chargeRateUnit
+         */
         val chargeRate: Double,
         val chargeToMaxRange: Boolean,
-        // in amps
+        /**
+         * Charger actual current in amps
+         */
         val chargerActualCurrent: Int,
         // unknown ATM, becomes lower while charging
         val chargerPilotCurrent: Int,
-        // power (in amps) delivered by the charger
+        /**
+         * Power (in amps) delivered by the charger
+         */
         val chargerPower: Int,
-        // voltage coming from the charger
+        /**
+         * Voltage coming from the charger
+         */
         val chargerVoltage: Int,
         val chargingState: ChargingState,
         @SerializedName("conn_charge_cable")
-        // the charging cable used at the moment
-        // value is "<invalid>" when not charging
+        /**
+         * The charging cable used at the moment
+         * Value is "<invalid>" when not charging
+         */
         val chargeCable: String,
-        // estimated battery range in configured distance unit
+        /**
+         * Estimated battery range in configured distance unit
+         *
+         * @see GuiSettings.distanceUnit
+         */
         @SerializedName("est_battery_range")
         val estimatedBatteryRange: Double,
-        // the brand of the fast charger
-        // value is "<invalid>" when not charging
-        // e.g. it is "Tesla" when using a Tesla Supercharger
+        /**
+         * The brand of the fast charger e.g. it is "Tesla" when using a Tesla Supercharger
+         * Value is "<invalid>" when not charging
+         */
         val fastChargerBrand: String,
         val fastChargerPresent: Boolean,
-        // typically the same as fastChargerBrand
+        /**
+         * Typically the same as fastChargerBrand
+         */
         val fastChargerType: String,
-        // the "best case scenario" for battery range
-        // typically 20-40 miles above estimatedBatteryRange
-        // which is more conservative
+        /**
+         * The "best case scenario" for battery range
+         * Typically 20-40 miles above estimatedBatteryRange
+         * which tends to be conservative. Still uses the configured
+         * distance unit
+         *
+         * @see estimatedBatteryRange
+         * @see GuiSettings.distanceUnit
+         */
         val idealBatteryRange: Double,
         val managedChargingActive: Boolean,
         val managedChargingStartTime: Long?,
@@ -67,9 +105,12 @@ data class ChargeState (
         val timeToFullCharge: Double,
         val timestamp: Long,
         val tripCharging: Boolean,
-        // what percentage of the battery level is currently usable
-        // always lower than batteryLevel
-        // Typically two or so percent lower
+        /**
+         * The percentage of the battery level that is currently usable
+         * Always lower than batteryLevel, typically two or so percent lower.
+         *
+         * @see batteryLevel
+         */
         val usableBatteryLevel: Int
         // todo figure out what user charge enable request looks like
 )

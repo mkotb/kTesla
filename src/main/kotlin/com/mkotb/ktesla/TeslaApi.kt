@@ -1,8 +1,7 @@
 package com.mkotb.ktesla
 
 import com.google.gson.FieldNamingPolicy
-import com.mkotb.ktesla.model.ChargePortState
-import com.mkotb.ktesla.model.ChargingState
+import com.mkotb.ktesla.model.*
 import com.mkotb.ktesla.request.*
 import com.mkotb.ktesla.util.LowercaseEnumAdapter
 import io.ktor.client.HttpClient
@@ -40,6 +39,8 @@ class TeslaApi (var token: String) {
 
                     registerEnumAdapter(ChargePortState::class)
                     registerEnumAdapter(ChargingState::class)
+                    registerEnumAdapter(AutoParkState::class)
+                    registerEnumAdapter(OnlineState::class)
                 }
             }
         }
