@@ -9,10 +9,13 @@ open class VehicleData (
         val displayName: String,
         @SerializedName("option_codes")
         val rawOptionCodes: String,
-        val color: String,
+        val color: String?,
         val tokens: List<String>,
         @SerializedName("state")
-        val onlineState: OnlineState
+        val onlineState: OnlineState,
+        val inService: Boolean,
+        val backsetToken: String?,
+        val backseatTokenUpdatedAt: Long?
 ) {
     val optionCodes: List<String>
         get() = rawOptionCodes.split(",")

@@ -1,5 +1,7 @@
-package com.mkotb.ktesla.request
+package com.mkotb.ktesla.request.data
 
+import com.mkotb.ktesla.request.TeslaRequest
+import com.mkotb.ktesla.request.TeslaResponse
 import io.ktor.http.HttpMethod
 
 class MobileEnabledRequest (

@@ -9,9 +9,9 @@ class TeslaData (
         color: String,
         tokens: List<String>,
         onlineState: OnlineState,
-        val inService: Boolean,
-        val backsetToken: String?,
-        val backseatTokenUpdatedAt: Long?,
+        inService: Boolean,
+        backsetToken: String?,
+        backseatTokenUpdatedAt: Long?,
         val driveState: DriveState,
         val climateState: ClimateState,
         val chargeState: ChargeState,
@@ -20,5 +20,6 @@ class TeslaData (
 ) : VehicleData(
         id, vehicleId, vin,
         displayName, rawOptionCodes, color,
-        tokens, onlineState
+        tokens, onlineState, inService, backsetToken,
+        backseatTokenUpdatedAt
 )
