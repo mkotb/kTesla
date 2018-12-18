@@ -2,7 +2,7 @@ package com.mkotb.ktesla.model
 
 import com.google.gson.annotations.SerializedName
 
-class GuiSettings (
+data class GuiSettings (
         /**
          * Whether time is displayed as 24-hour time
          */

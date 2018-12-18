@@ -2,7 +2,7 @@ package com.mkotb.ktesla.model
 
 import com.google.gson.annotations.SerializedName
 
-class VehicleState (
+data class VehicleState (
         val apiVersion: Int,
         /**
          * @see AutoParkState

@@ -57,14 +57,6 @@ class TeslaApi (var token: String) {
             ))
         }
 
-        suspend fun refreshToken(token: String): OAuthResponse {
-            return send(null, RefreshTokenRequest(
-                    clientId,
-                    clientSecret,
-                    token
-            ))
-        }
-
         /**
          * Send any TeslaRequest. This specific function is useful if the request
          * is unauthenticated and you do not have a TeslaApi instance.
@@ -124,10 +116,7 @@ class TeslaApi (var token: String) {
                 delay(auth.expiresIn - 1000)
 
                 if (!disabled) {
-                    val newAuth = refreshToken(auth.refreshToken)
-
-                    this@TeslaApi.token = newAuth.accessToken
-                    scheduleRefresh(newAuth)
+                    scheduleRefresh(refreshToken())
                 }
             }
         }
@@ -141,6 +130,17 @@ class TeslaApi (var token: String) {
      */
     fun disable() {
         disabled = true
+    }
+
+    suspend fun refreshToken(): OAuthResponse {
+        val response = send(RefreshTokenRequest(
+                clientId,
+                clientSecret,
+                token
+        ))
+
+        token = response.accessToken
+        return response
     }
 
     suspend inline fun <reified T : TeslaResponse> send(request: TeslaRequest<T>): T {

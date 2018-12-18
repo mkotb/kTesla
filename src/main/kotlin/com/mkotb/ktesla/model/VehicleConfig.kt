@@ -1,6 +1,6 @@
 package com.mkotb.ktesla.model
 
-class VehicleConfig (
+data class VehicleConfig (
         val canAcceptNavigationRequests: Boolean,
         val canActuateTrunks: Boolean,
         val carSpecialType: String,

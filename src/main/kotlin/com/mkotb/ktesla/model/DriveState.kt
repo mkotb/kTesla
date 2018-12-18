@@ -2,7 +2,7 @@ package com.mkotb.ktesla.model
 
 import com.google.gson.annotations.SerializedName
 
-class DriveState (
+data class DriveState (
         /**
          * The last time (in epoch seconds) the gps location was updated
          */
