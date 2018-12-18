@@ -6,7 +6,7 @@ import com.mkotb.ktesla.request.TeslaResponse
 import io.ktor.http.HttpMethod
 
 class WakeRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<WakeResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/wake_up"
     override val method = HttpMethod.Post

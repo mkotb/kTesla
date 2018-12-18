@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Starts the charge if car is plugged in and not charging
  */
 class ChargeStartRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_start"
     override val method = HttpMethod.Post
@@ -18,7 +18,7 @@ class ChargeStartRequest (
  * Stops the charge if car is plugged in but not charging
  */
 class ChargeStopRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_stop"
     override val method = HttpMethod.Post

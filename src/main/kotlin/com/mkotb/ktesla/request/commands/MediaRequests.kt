@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Toggles media from playing and paused
  */
 class TogglePlaybackRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_toggle_playback"
     override val method = HttpMethod.Post
@@ -18,7 +18,7 @@ class TogglePlaybackRequest (
  * Goes to next track in playlist
  */
 class NextTrackRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_next_track"
     override val method = HttpMethod.Post
@@ -28,7 +28,7 @@ class NextTrackRequest (
  * Goes to previous track if applicable
  */
 class PreviousTrackRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_prev_track"
     override val method = HttpMethod.Post
@@ -38,7 +38,7 @@ class PreviousTrackRequest (
  * Goes to next favourite track
  */
 class NextFavouriteTrackRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_next_fav"
     override val method = HttpMethod.Post
@@ -48,7 +48,7 @@ class NextFavouriteTrackRequest (
  * Goes to previous favourite track if applicable
  */
 class PreviousFavouriteTrackRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_prev_fav"
     override val method = HttpMethod.Post
@@ -58,7 +58,7 @@ class PreviousFavouriteTrackRequest (
  * Increases volume of media
  */
 class IncreaseVolumeRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/media_volume_up"
     override val method = HttpMethod.Post
@@ -68,7 +68,7 @@ class IncreaseVolumeRequest (
  * Decreases volume of media
  */
 class DecreaseVolumeRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/medai_volume_down"
     override val method = HttpMethod.Post

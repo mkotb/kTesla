@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Flashes headlights once
  */
 class FlashLightsRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/flash_lights"
     override val method = HttpMethod.Post

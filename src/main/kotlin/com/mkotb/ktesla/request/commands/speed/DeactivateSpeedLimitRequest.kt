@@ -5,7 +5,7 @@ import com.mkotb.ktesla.request.TeslaRequest
 import io.ktor.http.HttpMethod
 
 class DeactivateSpeedLimitRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         // existing or new pin
         private val pin: Int
 ) : TeslaRequest<SuccessResponse>() {

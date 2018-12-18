@@ -16,14 +16,14 @@ import io.ktor.http.HttpMethod
  * @see SetValetModeRequest.password
  */
 class ClearValetPinRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/reset_valet_pin"
     override val method = HttpMethod.Post
 }
 
 class SetValetModeRequest (
-        val vehicleId: Int,
+        val vehicleId: Long,
         /**
          * Whether to turn it on or off
          *

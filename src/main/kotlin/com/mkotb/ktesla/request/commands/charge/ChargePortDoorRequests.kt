@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Opens the charge port door
  */
 class OpenChargePortRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_port_door_open"
     override val method = HttpMethod.Post
@@ -18,7 +18,7 @@ class OpenChargePortRequest (
  * Closes the charge port door if it's motorized
  */
 class CloseChargePortRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_port_door_close"
     override val method = HttpMethod.Post

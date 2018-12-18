@@ -37,8 +37,11 @@ data class ChargeState (
         val chargeMilesAddedRated: Double,
         @SerializedName("charge_port_door_open")
         val isChargePortOpen: Boolean,
+        /**
+         * @see ChargePortState
+         */
         @SerializedName("charge_port_latch")
-        val chargePortState: ChargePortState,
+        val chargePortState: String,
         /**
          * charge rate in the configured charge unit
          *
@@ -60,7 +63,12 @@ data class ChargeState (
          * Voltage coming from the charger
          */
         val chargerVoltage: Int,
-        val chargingState: ChargingState,
+        /**
+         * Current charging state
+         *
+         * @see ChargingState
+         */
+        val chargingState: String,
         @SerializedName("conn_charge_cable")
         /**
          * The charging cable used at the moment
@@ -115,13 +123,13 @@ data class ChargeState (
         // todo figure out what user charge enable request looks like
 )
 
-enum class ChargePortState {
-    ENGAGED,
-    DISENGAGED
+object ChargePortState {
+    val ENGAGED = "Engaged"
+    val DISENGAGED = "Disengaged"
 }
 
-enum class ChargingState {
-    CHARGING,
-    DISCONNECTED,
-    STOPPED
+object ChargingState {
+    val CHARGING = "Charging"
+    val DISCONNECTED = "Disconnected"
+    val STOPPED = "Stopped"
 }

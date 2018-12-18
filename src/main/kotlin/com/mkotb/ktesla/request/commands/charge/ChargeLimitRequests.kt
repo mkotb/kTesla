@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Sets the charge limit to "standard"
  */
 class ChargeStandardLimitRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_standard"
     override val method = HttpMethod.Post
@@ -18,7 +18,7 @@ class ChargeStandardLimitRequest (
  * Sets the charge limit to 100%
  */
 class ChargeMaxLimitRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/charge_max_range"
     override val method = HttpMethod.Post
@@ -29,7 +29,7 @@ class ChargeMaxLimitRequest (
  * Sets the charge limit to assigned value
  */
 class SetChargeLimitRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * Between 0-100. Percentage the battery will charge to
          */

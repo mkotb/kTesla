@@ -5,7 +5,7 @@ import com.mkotb.ktesla.request.TeslaRequest
 import io.ktor.http.HttpMethod
 
 class ClearSpeedLimitPinRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         // existing pin
         private val pin: Int
 ) : TeslaRequest<SuccessResponse>() {

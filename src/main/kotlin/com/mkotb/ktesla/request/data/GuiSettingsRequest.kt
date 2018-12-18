@@ -6,7 +6,7 @@ import com.mkotb.ktesla.request.TeslaResponse
 import io.ktor.http.HttpMethod
 
 data class GuiSettingsRequest (
-        val vehicleId: Int
+        val vehicleId: Long
 ) : TeslaRequest<GuiSettingsResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/data_request/gui_settings"
     override val method = HttpMethod.Get

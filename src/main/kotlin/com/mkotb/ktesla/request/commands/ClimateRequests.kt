@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Starts the HVAC system
  */
 class StartAutoConditioningRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/auto_conditioning_start"
     override val method = HttpMethod.Post
@@ -18,14 +18,14 @@ class StartAutoConditioningRequest (
  * Stops the HVAC system
  */
 class StopAutoConditioningRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/auto_conditioning_stop"
     override val method = HttpMethod.Post
 }
 
 class SetTemperatureRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * Temperature in celsius, regardless of region or display settings
          */

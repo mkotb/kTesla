@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Honks horn twice
  */
 class HonkHornRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/honk_horn"
     override val method = HttpMethod.Post

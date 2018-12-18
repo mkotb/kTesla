@@ -5,7 +5,7 @@ import com.mkotb.ktesla.request.TeslaRequest
 import io.ktor.http.HttpMethod
 
 class SetSpeedLimitRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         // must be between 50 and 90 mph
         private val limit: Int
 ) : TeslaRequest<SuccessResponse>() {

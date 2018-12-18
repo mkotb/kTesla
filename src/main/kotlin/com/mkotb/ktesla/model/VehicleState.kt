@@ -4,8 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 class VehicleState (
         val apiVersion: Int,
+        /**
+         * @see AutoParkState
+         */
         @SerializedName("autopark_state_v3")
-        val autoParkState: AutoParkState,
+        val autoParkState: String,
         @SerializedName("autopark_style")
         val autoParkStyle: String,
         val calendarSupported: Boolean,
@@ -79,8 +82,6 @@ class SoftwareUpdate (
         val expectedDuration: Int,
         /**
          * Status of the software update
-         *
-         * TODO turn into enum
          */
         val status: String
 )
@@ -93,7 +94,7 @@ class SpeedLimitStatus (
         val pinCodeSet: Boolean
 )
 
-enum class AutoParkState {
-    STANDBY,
-    READY
+object AutoParkState {
+    val STANDBY = "Standby"
+    val READY = "Ready"
 }

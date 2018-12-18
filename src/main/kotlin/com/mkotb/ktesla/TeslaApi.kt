@@ -1,22 +1,20 @@
 package com.mkotb.ktesla
 
 import com.google.gson.FieldNamingPolicy
-import com.mkotb.ktesla.model.*
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParser
 import com.mkotb.ktesla.request.*
-import com.mkotb.ktesla.util.LowercaseEnumAdapter
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.cio.CIO
-import io.ktor.client.features.json.GsonSerializer
-import io.ktor.client.features.json.JsonFeature
-import io.ktor.client.request.forms.formData
-import io.ktor.client.request.forms.submitFormWithBinaryData
+import io.ktor.client.request.forms.submitForm
 import io.ktor.client.request.header
 import io.ktor.client.request.url
+import io.ktor.http.parametersOf
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.properties.Delegates
-import kotlin.reflect.KClass
 
 class TeslaApi (var token: String) {
     companion object {
@@ -27,24 +25,14 @@ class TeslaApi (var token: String) {
         val baseUrl = "https://owner-api.teslamotors.com"
         /*
          * HttpClient used universally by all instances of kTesla
-         * Gson Serializer is used to convert kotlin objects to and from JSON
          */
         var client = HttpClient(CIO) {
-            install(JsonFeature) {
-                serializer = GsonSerializer {
-                    setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
-
-                    fun <T : Enum<T>> registerEnumAdapter(clazz: KClass<T>) {
-                        registerTypeAdapter(clazz.java, LowercaseEnumAdapter(clazz))
-                    }
-
-                    registerEnumAdapter(ChargePortState::class)
-                    registerEnumAdapter(ChargingState::class)
-                    registerEnumAdapter(AutoParkState::class)
-                    registerEnumAdapter(OnlineState::class)
-                }
-            }
+            expectSuccess = false
         }
+
+        val gson: Gson = GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .create()
 
         /**
          * Set up the Tesla API for use. This must be called before any
@@ -84,33 +72,42 @@ class TeslaApi (var token: String) {
         suspend inline fun <reified T : TeslaResponse> send(api: TeslaApi?, request: TeslaRequest<T>) : T {
             // create mutable map of parameters
             val parameters = HashMap<String, Any?>(request.generateParameters())
+            val pairs = ArrayList<Pair<String, List<String>>>()
 
-            // transform into a form
-            val form = formData {
-                parameters.forEach { k, v ->
-                    if (v != null) {
-                        append(k, v)
-                    }
+            parameters.forEach { k, v ->
+                if (v != null) {
+                    pairs.add(k to listOf(v.toString()))
                 }
             }
 
-            return client.submitFormWithBinaryData(formData = form) {
+            val resultString = client.submitForm<String>(formData = parametersOf(*pairs.toTypedArray())) {
                 // set HTTP Method and URL
                 method = request.method
                 url("$baseUrl/${request.endpoint}")
 
                 // add api token if applicable
                 if (request.authenticated && api != null) {
-                    header("Authorization", "Bearer: ${api.token}")
+                    header("Authorization", "Bearer ${api.token}")
                 }
             }
+
+            val json = JsonParser().parse(resultString).asJsonObject
+
+            if (json.has("error")) {
+                val error = json["error"].asString
+                val errorDescription = json["error-description"]?.asString
+
+                throw TeslaRequestException(error, errorDescription)
+            }
+
+            return gson.fromJson(resultString, T::class.java)
         }
 
         /**
          * Create an instance of TeslaApi using an email and password.
          * Performs authentication and sets up a refresh task for you
          */
-        suspend fun create(email: String, password: String): TeslaApi {
+        suspend fun login(email: String, password: String): TeslaApi {
             return TeslaApi(authenticate(email, password))
         }
     }

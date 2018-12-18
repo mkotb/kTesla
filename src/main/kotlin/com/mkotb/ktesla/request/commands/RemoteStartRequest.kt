@@ -9,7 +9,7 @@ import io.ktor.http.HttpMethod
  * without a key within two minutes of sending this request
  */
 class RemoteStartRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * Password to the authenticated account
          */

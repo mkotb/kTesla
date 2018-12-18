@@ -5,7 +5,7 @@ import com.mkotb.ktesla.request.TeslaRequest
 import com.mkotb.ktesla.request.TeslaResponse
 import io.ktor.http.HttpMethod
 
- class VehiclesRequest: TeslaRequest<VehiclesResponse>() {
+object VehiclesRequest: TeslaRequest<VehiclesResponse>() {
     override val endpoint = "api/1/vehicles"
     override val method = HttpMethod.Get
 }

@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Schedules a software update if one is available
  */
 class ScheduleSoftwareUpdateRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * How many seconds to delay the install
          * 0 for immediate
@@ -29,7 +29,7 @@ class ScheduleSoftwareUpdateRequest (
  * Cancels a software update if one is scheduled and hasn't started
  */
 class CancelSoftwareUpdateRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<SuccessResponse>() {
     override val endpoint = "api/1/vehicles/$vehicleId/command/cancel_software_update"
     override val method = HttpMethod.Post

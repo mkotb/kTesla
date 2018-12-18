@@ -8,7 +8,7 @@ import io.ktor.http.HttpMethod
  * Controls the sun roof of the Model S
  */
 class ControlSunRoofRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * The state to set it to. Either "vent" or "close" at the moment
          */

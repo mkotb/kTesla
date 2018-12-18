@@ -5,9 +5,9 @@ import com.mkotb.ktesla.request.TeslaResponse
 import io.ktor.http.HttpMethod
 
 class MobileEnabledRequest (
-        vehicleId: Int
+        vehicleId: Long
 ) : TeslaRequest<MobileEnabledResponse>() {
-    override val endpoint = "api/1/vehicles/$vehicleId/data_request/mobile_enabled"
+    override val endpoint = "api/1/vehicles/$vehicleId/mobile_enabled"
     override val method = HttpMethod.Get
 }
 

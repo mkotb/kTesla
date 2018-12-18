@@ -1,14 +1,14 @@
 package com.mkotb.ktesla.model
 
 class TeslaData (
-        id: Int,
-        vehicleId: Int,
+        id: Long,
+        vehicleId: Long,
         vin: String,
         displayName: String,
         rawOptionCodes: String,
         color: String,
         tokens: List<String>,
-        onlineState: OnlineState,
+        onlineState: String,
         inService: Boolean,
         backsetToken: String?,
         backseatTokenUpdatedAt: Long?,
@@ -17,7 +17,7 @@ class TeslaData (
         val chargeState: ChargeState,
         val vehicleState: VehicleState,
         val vehicleConfig: VehicleConfig
-) : VehicleData(
+) : VehicleData (
         id, vehicleId, vin,
         displayName, rawOptionCodes, color,
         tokens, onlineState, inService, backsetToken,

@@ -5,7 +5,7 @@ import com.mkotb.ktesla.request.TeslaRequest
 import io.ktor.http.HttpMethod
 
 class OpenTrunkRequest (
-        vehicleId: Int,
+        vehicleId: Long,
         /**
          * Which trunk to open. Either "front" or "rear" at the moment
          */
