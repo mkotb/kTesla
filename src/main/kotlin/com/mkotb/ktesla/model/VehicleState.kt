@@ -62,7 +62,6 @@ data class VehicleState (
          * How open the sun roof is (in percent)
          */
         val sunRoofStatus: Int,
-        // todo convert to enum
         val sunRoofState: String,
         val timestamp: Long,
         val valetMode: Boolean,
